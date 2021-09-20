@@ -108,5 +108,4 @@ class ContactDetails
                 ",Email=" + email +
                 "}";
     }
-
 }

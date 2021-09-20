@@ -5,7 +5,7 @@ import java.util.*;
 class AddressBook {
     public static ArrayList<ContactDetails> contactdetails = new ArrayList<ContactDetails>();
     public static Map<String, ContactDetails> contactDetailsMap = new HashMap<String, ContactDetails>();
-    public static int entries = 0;
+    public static int entries = 0, cityentry =0, stateentry =0;
     public static String[] namelist = new String[5];
     public static Scanner scan = new Scanner(System.in);
 
@@ -182,7 +182,7 @@ class AddressBook {
 
                 case 5: {
                     if (members == 0)
-                        System.out.println("\n There is no contact to Search..");
+                        System.out.println("\n There is no contact to delete_contact!!!!");
                     else {
                         option.view_by_state_or_city();
                     }
@@ -259,28 +259,30 @@ class AddressBook {
                 System.out.println("\nEnter the state:");
                 String checkstate = scan.next();
                 System.out.println("\nDetails of persons in " + checkstate + " state");
-                int check = 0, i = 0, noentry = 0;
+                int check = 0, i = 0;
                 while (check < entries) {
                     if (checkstate.equals(contactdetails.get(i).getState())) {
                         map_all_person_by_state(i);
                         System.out.println("\n" + contactDetailsMap);
                         check++;
                         i++;
-                        noentry++;
+                        stateentry++;
                     } else {
                         check++;
                         i++;
                     }
                 }
-                if (noentry == 0)
-                    System.out.println("\nNo entries are there...");
+                if (stateentry == 0)
+                    System.out.println("\nNo entries are there.....");
+                else
+                    System.out.println("\n There are "+stateentry+" contact persons in the state");
             }
             break;
 
             case "city": {
                 System.out.println("\nEnter the city:");
                 String checkcity = scan.next();
-                int check = 0, i = 0, noentry = 0;
+                int check = 0, i = 0;
                 System.out.println("\nDetails of persons in " + checkcity + " city");
                 while (check < entries) {
                     if (checkcity.equals(contactdetails.get(i).getCity())) {
@@ -288,14 +290,17 @@ class AddressBook {
                         System.out.println("\n" + contactDetailsMap);
                         check++;
                         i++;
-                        noentry++;
+                        cityentry++;
                     } else {
                         check++;
                         i++;
                     }
                 }
-                if (noentry == 0)
-                    System.out.println("\nNo entries are there...");
+                if (cityentry == 0)
+                    System.out.println("\nNo entries are there.....");
+                else
+                    System.out.println("\n There are "+cityentry+" contact persons in the city");
+
             }
             break;
         }
