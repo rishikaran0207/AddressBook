@@ -3,12 +3,11 @@ import java.util.*;
 
 
 class AddressBook {
-    public static ArrayList<String> check = new ArrayList<String>();
     public static ArrayList<ContactDetails> contactdetails = new ArrayList<ContactDetails>();
-    public static Map<Integer, ContactDetails> contactDetailsMap = new HashMap<Integer, ContactDetails>();
+    public static Map<String, ContactDetails> contactDetailsMap = new HashMap<String, ContactDetails>();
     public static int entries = 0;
     public static String[] namelist = new String[5];
-    public static Scanner s = new Scanner(System.in);
+    public static Scanner scan = new Scanner(System.in);
 
 
     public static void main(String[] args) {
@@ -27,15 +26,16 @@ class AddressBook {
             System.out.println("2.Display the contact....");
             System.out.println("3.Edit the contact...");
             System.out.println("4.Delete the contact...");
+            System.out.println("5.search by city or state");
 
 
             System.out.print("\n\n Enter the choice What you want to do: ");
-            int choice = s.nextInt();
+            int choice = scan.nextInt();
 
             switch (choice) {
                 case 1: {
                     System.out.print("\nhow many no of contact to be added:");
-                    int contact = s.nextInt();
+                    int contact = scan.nextInt();
 
                     for (int i = 0; i < contact; i++) {
                         String firstname = null, lastname, address, email, city, state;
@@ -44,34 +44,34 @@ class AddressBook {
                         int entrynumber = i + 1;
                         System.out.println("\nThe Entry number is " + entrynumber);
                         System.out.print("\nEnter the First name: ");
-                        firstname=s.next();
-                        int c=0;
-                        while(c<contactdetails.size())
-                            if(!(contactdetails.get(c).getFirstname().equals(firstname))){
+                        firstname = scan.next();
+                        int c = 0;
+                        while (c < contactdetails.size())
+                            if (!(contactdetails.get(c).getFirstname().equals(firstname))) {
                                 c++;
-                            }else{
+                            } else {
                                 System.out.println("\nName is Already taken");
                                 System.out.print("\nEnter the First name: ");
-                                firstname=s.next();
+                                firstname = scan.next();
                             }
-                        namelist[i]=firstname;
+                        namelist[i] = firstname;
                         System.out.print("\nEnter the Last name: ");
-                        lastname = s.next();
+                        lastname = scan.next();
                         System.out.print("\nEnter the Address: ");
-                        address = s.next();
+                        address = scan.next();
                         System.out.print("\nEnter the city: ");
-                        city = s.next();
+                        city = scan.next();
                         System.out.print("\nEnter the state: ");
-                        state = s.next();
+                        state = scan.next();
                         System.out.print("\nEnter the zip: ");
-                        zip = s.nextInt();
+                        zip = scan.nextInt();
                         System.out.print("\nEnter the phone number: ");
-                        phonenumber = s.nextLong();
+                        phonenumber = scan.nextLong();
                         System.out.print("\nEnter the EmailID: ");
-                        email = s.next();
-                        option.add(firstname, lastname, address, city, state, zip, phonenumber, email);
+                        email = scan.next();
+                        option.add_contact(firstname, lastname, address, city, state, zip, phonenumber, email);
 
-                        System.out.println("\n" + firstname + "'s Contact added successfully!!!");
+                        System.out.println("\n" + firstname + "'scan Contact added successfully!!!");
 
                         members++;
                     }
@@ -82,23 +82,26 @@ class AddressBook {
 
                 case 2: {
                     if (members == 0)
-                        System.out.println("\n There is no contact to display");
+                        System.out.println("\n There is no contact to display_all_contact");
                     else {
-                        option.display();
+                        option.map_all_contact();
+                        option.display_all_contact();
+                        System.out.println("\n\nMapping of the contact details:");
+                        System.out.println("Map:" + contactDetailsMap);
                     }
                 }
                 break;
 
                 case 3: {
                     if (members == 0)
-                        System.out.println("\n There is no contact to edit!!!!");
+                        System.out.println("\n There is no contact to edit_contact!!!!");
                     else {
-                        option.display();
+                        option.display_all_contact();
 
                         int e = 0;
                         int flag = 0;
-                        System.out.print("\n\nWhich person's detail you want edit: ");
-                        String name = s.next();
+                        System.out.print("\n\nWhich person'scan detail you want edit_contact: ");
+                        String name = scan.next();
                         for (int j = 0; j < members; j++) {
 
                             if (name.equals(namelist[j])) {
@@ -108,33 +111,33 @@ class AddressBook {
                                 String firstname = null, lastname, address, email, city, state;
                                 int zip;
                                 long phonenumber;
-                                System.out.println("\n\n Enter the details to edit :");
+                                System.out.println("\n\n Enter the details to edit_contact :");
                                 System.out.print("\nEnter the First name: ");
-                                firstname=s.next();
-                                int c=0;
-                                while(c<contactdetails.size())
-                                    if(!(contactdetails.get(c).getFirstname().equals(firstname))){
+                                firstname = scan.next();
+                                int c = 0;
+                                while (c < contactdetails.size())
+                                    if (!(contactdetails.get(c).getFirstname().equals(firstname))) {
                                         c++;
-                                    }else{
+                                    } else {
                                         System.out.println("\nName is Already taken");
                                         System.out.print("\nEnter the First name: ");
-                                        firstname=s.next();
+                                        firstname = scan.next();
                                     }
                                 System.out.print("\nEnter the Last name: ");
-                                lastname = s.next();
+                                lastname = scan.next();
                                 System.out.print("\nEnter the Address: ");
-                                address = s.next();
+                                address = scan.next();
                                 System.out.print("\nEnter the city: ");
-                                city = s.next();
+                                city = scan.next();
                                 System.out.print("\nEnter the state: ");
-                                state = s.next();
+                                state = scan.next();
                                 System.out.print("\nEnter the zip: ");
-                                zip = s.nextInt();
+                                zip = scan.nextInt();
                                 System.out.print("\nEnter the phone number: ");
-                                phonenumber = s.nextLong();
+                                phonenumber = scan.nextLong();
                                 System.out.print("\nEnter the EmailID: ");
-                                email = s.next();
-                                option.edit(e, firstname, lastname, address, city, state, zip, phonenumber, email);
+                                email = scan.next();
+                                option.edit_contact(e, firstname, lastname, address, city, state, zip, phonenumber, email);
                             }
                         }
                         if (flag == 0)
@@ -145,15 +148,15 @@ class AddressBook {
 
                 case 4: {
                     if (members == 0)
-                        System.out.println("\n There is no contact to delete!!!!");
+                        System.out.println("\n There is no contact to delete_contact!!!!");
                     else {
-                        option.display();
+                        option.display_all_contact();
 
 
                         int e = 0;
                         int flag = 0;
-                        System.out.print("\n\nWhich person's detail you want delete: ");
-                        String name = s.next();
+                        System.out.print("\n\nWhich person'scan detail you want delete_contact: ");
+                        String name = scan.next();
                         for (int j = 0; j < members; j++) {
 
                             if (name.equals(namelist[j])) {
@@ -161,7 +164,7 @@ class AddressBook {
                                 e = j;
                                 j = members + 1;
                                 flag = 1;
-                                option.delete(e);
+                                option.delete_contact(e);
                                 for (int k = e; k < members - 1; k++) {
                                     namelist[k] = namelist[k + 1];
                                 }
@@ -177,27 +180,36 @@ class AddressBook {
                 }
                 break;
 
-            }
+                case 5: {
+                    if (members == 0)
+                        System.out.println("\n There is no contact to Search..");
+                    else {
+                        option.view_by_state_or_city();
+                    }
 
+                }
+                break;
+            }
             System.out.print("\n\nDo you want to continue press 'y' else 'n':");
-            char ch = s.next().charAt(0);
+            char ch = scan.next().charAt(0);
             ans = ch;
-            option.map();
+
+
         } while (ans == 'y');
 
 
     }
 
-    public void add(String firstname, String lastname, String address, String city, String state, int zip, long phonenumber, String email) {
+    public void add_contact(String firstname, String lastname, String address, String city, String state, int zip,
+                            long phonenumber, String email) {
         ContactDetails details = new ContactDetails(firstname, lastname, address, city, state, zip, phonenumber, email);
         contactdetails.add(details);
-        check.add(firstname);
         entries++;
 
 
     }
 
-    public void display() {
+    public void display_all_contact() {
         System.out.println("\n\nDisplaying  the contact details....");
         Iterator itr = contactdetails.iterator();
         while (itr.hasNext()) {
@@ -211,24 +223,81 @@ class AddressBook {
             System.out.print("\nPhone number: " + details.getPhonenumber());
             System.out.print("\nEmailId: " + details.getEmail());
         }
-        System.out.println("\n\nMapping of the contact details:");
-        System.out.println("Map:" + contactDetailsMap);
+
     }
 
-    public void edit(int index, String firstname, String lastname, String address, String city, String state, int zip, long phonenumber, String email) {
+    public void edit_contact(int index, String firstname, String lastname, String address, String city, String
+            state, int zip, long phonenumber, String email) {
         contactdetails.set(index, new ContactDetails(firstname, lastname, address, city, state, zip, phonenumber, email));
-        check.set(index, firstname);
-
     }
 
-    public void delete(int e) {
+    public void delete_contact(int e) {
         contactdetails.remove(e);
     }
 
-    public void map() {
+    public void map_all_contact() {
         for (int i = 0; i < entries; i++) {
             Integer a = i + 1;
-            contactDetailsMap.put(a, contactdetails.get(i));
+            contactDetailsMap.put(contactdetails.get(i).getFirstname(), contactdetails.get(i));
+        }
+    }
+
+    public void map_all_person_by_state(int i) {
+        contactDetailsMap.put(contactdetails.get(i).getFirstname(), contactdetails.get(i));
+    }
+
+    public void map_all_person_by_city(int i) {
+        contactDetailsMap.put(contactdetails.get(i).getFirstname(), contactdetails.get(i));
+    }
+
+
+    public void view_by_state_or_city() {
+        System.out.println("\nBy which you what to search city or state..");
+        String type = scan.next();
+        switch (type.toLowerCase()) {
+            case "state": {
+                System.out.println("\nEnter the state:");
+                String checkstate = scan.next();
+                System.out.println("\nDetails of persons in " + checkstate + " state");
+                int check = 0, i = 0, noentry = 0;
+                while (check < entries) {
+                    if (checkstate.equals(contactdetails.get(i).getState())) {
+                        map_all_person_by_state(i);
+                        System.out.println("\n" + contactDetailsMap);
+                        check++;
+                        i++;
+                        noentry++;
+                    } else {
+                        check++;
+                        i++;
+                    }
+                }
+                if (noentry == 0)
+                    System.out.println("\nNo entries are there...");
+            }
+            break;
+
+            case "city": {
+                System.out.println("\nEnter the city:");
+                String checkcity = scan.next();
+                int check = 0, i = 0, noentry = 0;
+                System.out.println("\nDetails of persons in " + checkcity + " city");
+                while (check < entries) {
+                    if (checkcity.equals(contactdetails.get(i).getCity())) {
+                        map_all_person_by_city(i);
+                        System.out.println("\n" + contactDetailsMap);
+                        check++;
+                        i++;
+                        noentry++;
+                    } else {
+                        check++;
+                        i++;
+                    }
+                }
+                if (noentry == 0)
+                    System.out.println("\nNo entries are there...");
+            }
+            break;
         }
     }
 

@@ -52,7 +52,6 @@ class ContactDetails
     }
 
     public String getCity() {
-        this.city = city;
         return city;
     }
 
